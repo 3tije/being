@@ -15,7 +15,7 @@ Klik **Masuk**, lalu pilih:
 - Profesional
 - Admin
 
-Nomor WhatsApp Admin: **0878 7788 3457**
+Kontak WhatsApp admin disimpan di tombol bantuan dan tidak ditampilkan sebagai nomor di antarmuka.
 
 ## Status
 Frontend/PWA siap uji. Login, database, chat nyata, pembayaran, dan laporan PDF akan dihubungkan melalui Supabase pada tahap berikutnya.
