@@ -77,9 +77,9 @@ document.querySelectorAll(".side-link[data-panel]").forEach(b=>b.onclick=()=>{
 roleBtn.onclick=()=>{state.role=state.role==="client"?"professional":"client";roleBtn.textContent=state.role==="client"?"Mode Klien":"Mode Profesional";toast(`Mode ${state.role==="client"?"klien":"profesional"} dipilih`)};
 professionalModeBtn.onclick=()=>{state.role="professional";showDashboard()};
 function updateRoleUI(){
- const pro=state.role==="professional";
- sideRole.textContent=pro?"Dashboard Profesional":"Dashboard Klien";
- dashGreeting.textContent=pro?"Halo, Profesional Being":"Halo, Tri";
+ const pro=state.role==="professional"; const admin=state.role==="admin";
+ sideRole.textContent=admin?"Dashboard Admin":(pro?"Dashboard Profesional":"Dashboard Klien");
+ dashGreeting.textContent=admin?"Halo, Admin BEING":(pro?"Halo, Profesional Being":"Halo, Tri");
  upcomingTitle.textContent=pro?"Sesi Berikutnya":"Jadwal Mendatang";
  statGrid.innerHTML=(pro?[
  ["Permintaan Baru","8","+3 hari ini"],["Sesi Bulan Ini","24","+12%"],["Laporan Tertunda","3","Perlu tindakan"],["Pendapatan","Rp8,4 jt","+9%"]
@@ -96,3 +96,15 @@ downloadReport.onclick=()=>{
 };
 renderServices();renderPros();renderRequests();renderCalendar();updateRoleUI();
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+
+const adminModeBtn=document.getElementById("adminModeBtn");
+if(adminModeBtn){
+ adminModeBtn.onclick=()=>{
+   state.role="admin";
+   showDashboard();
+   document.querySelectorAll(".admin-only").forEach(x=>x.classList.remove("hidden"));
+   const adminLink=document.querySelector('[data-panel="admin"]');
+   if(adminLink) adminLink.click();
+   toast("Mode Admin BEING aktif");
+ };
+}
