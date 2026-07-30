@@ -1,371 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#174F3A" />
-  <meta name="description" content="BEING Biro Psikologi — layanan konsultasi psikologi, clinical supervision, dan konsultasi profesional." />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" type="image/png" href="assets/icon-192.png" />
-  <link rel="apple-touch-icon" href="assets/icon-192.png" />
-  <link rel="stylesheet" href="styles.css" />
-  <title>BEING Biro Psikologi — Konsultasi & Clinical Supervision</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0c7a3b">
+  <title>BEING Biro Psikologi</title>
+  <meta name="description" content="Platform konsultasi dan clinical supervision BEING Biro Psikologi.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/logo-being.png">
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <div id="toast" class="toast"></div>
-  <a class="wa-float" href="https://wa.me/6287877883457?text=Halo%20Admin%20BEING%20Biro%20Psikologi,%20saya%20ingin%20menanyakan%20layanan%20konsultasi." target="_blank" rel="noopener" aria-label="Hubungi Admin BEING melalui WhatsApp">WA</a>
 
   <header class="topbar">
-    <a class="brand official-brand" href="#home" aria-label="BEING Biro Psikologi">
-      <img src="assets/logo-being-header.png" alt="Logo resmi BEING Biro Psikologi" />
+    <a class="brand" href="#home">
+      <img src="assets/logo-being.png" alt="BEING Biro Psikologi">
+      <div><strong>BEING</strong><span>Biro Psikologi</span></div>
     </a>
     <nav class="desktop-nav">
-      <a href="#home">Beranda</a>
-      <a href="#services">Layanan</a>
-      <a href="#professionals">Profesional</a>
-      <a href="#flow">Cara Kerja</a>
-      <a href="#contact">Kontak</a>
+      <a href="#home">Beranda</a><a href="#services">Layanan</a><a href="#flow">Cara Kerja</a><a href="#professionals">Profesional</a><a href="#help">Bantuan</a>
     </nav>
-    <div class="header-actions">
-      <button class="btn ghost" id="roleBtn">Mode Klien</button>
-      <button class="btn ghost" id="adminModeBtn">Mode Admin</button>
-      <button class="btn primary" data-open="authModal">Masuk</button>
+    <div class="top-actions">
+      <a class="btn btn-soft" target="_blank" rel="noopener" href="https://wa.me/6287877883457?text=Halo%20Admin%20BEING,%20saya%20ingin%20bertanya%20tentang%20layanan.">WhatsApp</a>
+      <button class="btn btn-primary" data-open-login>Masuk</button>
     </div>
   </header>
 
-  <main>
-    <section id="home" class="hero">
+  <main id="publicApp">
+    <section class="hero" id="home">
       <div class="hero-copy">
-        <span class="eyebrow">Ruang aman untuk keputusan profesional</span>
-        <h1>Temukan supervisor dan profesional yang tepat untuk kebutuhan Anda.</h1>
-        <p>
-          Layanan konsultasi, clinical supervision, bedah kasus, tata kelola rehabilitasi,
-          pengembangan kompetensi, serta konsultasi lintas bidang dalam satu ekosistem.
-        </p>
+        <span class="eyebrow">Ruang bertumbuh yang aman dan profesional</span>
+        <h1>Ruang konsultasi profesional untuk hidup lebih bermakna.</h1>
+        <p>Temukan psikolog, coach, konselor, dan clinical supervisor yang sesuai dengan kebutuhan Anda melalui proses pencocokan yang terarah.</p>
         <div class="hero-actions">
-          <button class="btn primary large" data-open="needModal">Mulai Konsultasi</button>
-          <a class="btn secondary large" href="#professionals">Lihat Profesional</a>
-          <a class="btn whatsapp large" href="https://wa.me/6287877883457?text=Halo%20Admin%20BEING%20Biro%20Psikologi,%20saya%20ingin%20menanyakan%20layanan%20konsultasi." target="_blank" rel="noopener">Konsultasi via WhatsApp</a>
+          <button class="btn btn-primary btn-lg" data-open-login>Mulai Konsultasi</button>
+          <a class="btn btn-outline btn-lg" href="#flow">Pelajari Alur</a>
         </div>
-        <div class="trust-row">
-          <div><strong>Terarah</strong><span>Matching berdasarkan kebutuhan</span></div>
-          <div><strong>Aman</strong><span>Data dan dokumen terlindungi</span></div>
-          <div><strong>Terukur</strong><span>Laporan dan tindak lanjut</span></div>
-        </div>
+        <div class="trust-row"><span>✓ Profesional terverifikasi</span><span>✓ Aman & rahasia</span><span>✓ Laporan tindak lanjut</span></div>
       </div>
-      <div class="hero-card">
-        <div class="mini-head">
-          <span class="online-dot"></span>
-          <span>Rekomendasi untuk Anda</span>
+      <div class="hero-panel">
+        <div class="mini-card active-session">
+          <small>Konsultasi aktif</small><strong>Telekonsultasi</strong>
+          <span>Hari ini • 10.00 WIB</span>
+          <button class="btn btn-light">Masuk Ruang</button>
         </div>
-        <div class="profile-feature">
-          <div class="avatar big">AS</div>
-          <div>
-            <h3>Dr. Aulia Santoso, M.Psi., Psikolog</h3>
-            <p>Psikologi Klinis • CBT • Adiksi</p>
-            <div class="rating">★ 4.9 <span>128 ulasan</span></div>
-          </div>
+        <div class="mini-grid">
+          <div><b>3</b><span>Model layanan</span></div><div><b>5</b><span>Rekomendasi profesional</span></div>
+          <div><b>PDF</b><span>Laporan hasil</span></div><div><b>WA</b><span>Notifikasi otomatis</span></div>
         </div>
-        <div class="match-score">
-          <div><span>Kesesuaian kebutuhan</span><strong>96%</strong></div>
-          <div class="progress"><i style="width:96%"></i></div>
-        </div>
-        <div class="slot">
-          <span>Jadwal terdekat</span>
-          <strong>Hari ini, 19.30 WIB</strong>
-        </div>
-        <button class="btn primary full" data-open="bookingModal">Pilih Jadwal</button>
       </div>
     </section>
 
     <section class="section" id="services">
-      <div class="section-head">
-        <span class="eyebrow">Layanan utama</span>
-        <h2>Dukungan profesional sesuai kebutuhan nyata</h2>
-        <p>Pilih kategori layanan. Anda tetap dapat menuliskan kebutuhan secara rinci.</p>
-      </div>
-      <div class="service-grid" id="serviceGrid"></div>
-    </section>
-
-    <section class="section soft" id="professionals">
-      <div class="section-head row-head">
-        <div>
-          <span class="eyebrow">Profesional terverifikasi</span>
-          <h2>Rekomendasi terbaik untuk Anda</h2>
-        </div>
-        <div class="filters">
-          <select id="expertiseFilter">
-            <option value="all">Semua Kompetensi</option>
-            <option value="adiksi">Adiksi</option>
-            <option value="klinis">Psikologi Klinis</option>
-            <option value="rehabilitasi">Rehabilitasi</option>
-            <option value="hukum">Hukum</option>
-            <option value="karier">Karier</option>
-          </select>
-        </div>
-      </div>
-      <div class="professional-grid" id="professionalGrid"></div>
-    </section>
-
-    <section class="section" id="flow">
-      <div class="section-head">
-        <span class="eyebrow">Alur layanan</span>
-        <h2>Dari kebutuhan hingga tindak lanjut</h2>
-      </div>
-      <div class="flow-grid">
-        <article><span>01</span><h3>Ceritakan kebutuhan</h3><p>Pilih kategori, tulis deskripsi, dan unggah dokumen pendukung bila diperlukan.</p></article>
-        <article><span>02</span><h3>Dapatkan rekomendasi</h3><p>Matching engine menampilkan 3–5 profesional dengan kompetensi paling sesuai.</p></article>
-        <article><span>03</span><h3>Pilih model layanan</h3><p>Gunakan teks, telekonsultasi, atau pertemuan langsung.</p></article>
-        <article><span>04</span><h3>Terima laporan</h3><p>Profesional menyusun ringkasan, analisis, rekomendasi, dan rencana tindak lanjut.</p></article>
+      <div class="section-head"><span class="eyebrow">Layanan utama</span><h2>Pilih bentuk layanan yang paling nyaman</h2></div>
+      <div class="cards three">
+        <article class="service-card"><div class="icon">💬</div><h3>Teks (Chat)</h3><p>Konsultasi berbasis pesan teks dengan ruang percakapan yang aman.</p><button class="link-btn" data-open-login>Pilih layanan →</button></article>
+        <article class="service-card featured"><div class="icon">🎥</div><h3>Telekonsultasi</h3><p>Konsultasi melalui video atau voice call sesuai jadwal.</p><button class="link-btn" data-open-login>Pilih layanan →</button></article>
+        <article class="service-card"><div class="icon">🤝</div><h3>Tatap Muka</h3><p>Pertemuan langsung di lokasi layanan yang telah disepakati.</p><button class="link-btn" data-open-login>Pilih layanan →</button></article>
       </div>
     </section>
 
-    <section class="section cta">
-      <div>
-        <span class="eyebrow light">Untuk profesional</span>
-        <h2>Bagikan keahlian Anda dalam ekosistem Being.</h2>
-        <p>Kelola profil, jadwal, sesi, dokumen, laporan, dan pendapatan dari satu dashboard.</p>
-      </div>
-      <button class="btn light large" id="professionalModeBtn">Lihat Dashboard Profesional</button>
-    </section>
-
-
-    <section class="section contact-section" id="contact">
-      <div class="contact-card">
-        <div>
-          <span class="eyebrow">Bantuan & informasi</span>
-          <h2>Butuh bantuan memilih layanan?</h2>
-          <p>Admin BEING siap membantu menjelaskan layanan, jadwal, biaya, dan proses konsultasi.</p>
-          <div class="contact-number">WhatsApp Admin: <strong>0878 7788 3457</strong></div>
-        </div>
-        <div class="contact-actions">
-          <a class="btn whatsapp large" href="https://wa.me/6287877883457?text=Halo%20Admin%20BEING%20Biro%20Psikologi,%20saya%20ingin%20menanyakan%20layanan%20konsultasi." target="_blank" rel="noopener">Hubungi Admin</a>
-          <button class="btn secondary large" data-open="needModal">Isi Kebutuhan Layanan</button>
-        </div>
+    <section class="section muted" id="flow">
+      <div class="section-head"><span class="eyebrow">Alur layanan</span><h2>Dari kebutuhan hingga laporan profesional</h2></div>
+      <div class="timeline">
+        <div><b>1</b><h3>Daftar & lengkapi profil</h3><p>Isi identitas serta kebutuhan layanan.</p></div>
+        <div><b>2</b><h3>Dapatkan hasil matching</h3><p>Pilih dari rekomendasi profesional yang sesuai.</p></div>
+        <div><b>3</b><h3>Pilih model & jadwal</h3><p>Chat, telekonsultasi, atau tatap muka.</p></div>
+        <div><b>4</b><h3>Konsultasi</h3><p>Masuk ke ruang konsultasi sesuai jadwal.</p></div>
+        <div><b>5</b><h3>Laporan & tindak lanjut</h3><p>Unduh laporan PDF dan terima notifikasi.</p></div>
       </div>
     </section>
 
-    <section class="dashboard hidden" id="dashboard">
-      <aside class="sidebar">
-        <div class="side-brand official-side-brand">
-          <img src="assets/logo-being-header.png" alt="Logo BEING Biro Psikologi">
-          <span id="sideRole">Dashboard Klien</span>
-        </div>
-        <button class="side-link active" data-panel="overview">Ringkasan</button>
-        <button class="side-link" data-panel="requests">Kebutuhan Layanan</button>
-        <button class="side-link" data-panel="schedule">Jadwal</button>
-        <button class="side-link" data-panel="consultation">Ruang Konsultasi</button>
-        <button class="side-link" data-panel="reports">Laporan</button>
-        <button class="side-link" data-panel="payments">Pembayaran</button>
-        <button class="side-link" data-panel="profile">Profil</button>
-        <button class="side-link admin-only hidden" data-panel="admin">Kelola Sistem</button>
-        <button class="side-link danger" id="exitDashboard">Kembali ke Beranda</button>
-      </aside>
-
-      <div class="dash-content">
-        <div class="dash-top">
-          <div>
-            <span class="eyebrow">Selamat datang kembali</span>
-            <h2 id="dashGreeting">Halo, Tri</h2>
-          </div>
-          <div class="dash-tools">
-            <button class="icon-btn" title="Notifikasi">🔔</button>
-            <div class="avatar">TT</div>
-          </div>
-        </div>
-
-        <section class="panel active" id="panel-overview">
-          <div class="stat-grid" id="statGrid"></div>
-          <div class="dash-grid">
-            <article class="card span2">
-              <div class="card-head"><h3 id="upcomingTitle">Jadwal Mendatang</h3><button class="text-btn">Lihat semua</button></div>
-              <div id="upcomingContent"></div>
-            </article>
-            <article class="card">
-              <div class="card-head"><h3>Progres Layanan</h3></div>
-              <div class="step-list">
-                <div class="done"><i>✓</i><span><b>Permintaan dibuat</b><small>28 Juli 2026</small></span></div>
-                <div class="done"><i>✓</i><span><b>Profesional dipilih</b><small>Dr. Aulia Santoso</small></span></div>
-                <div class="current"><i>3</i><span><b>Konsultasi</b><small>30 Juli 2026, 19.30</small></span></div>
-                <div><i>4</i><span><b>Laporan & tindak lanjut</b><small>Menunggu sesi selesai</small></span></div>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="panel" id="panel-requests">
-          <div class="panel-title"><div><h2>Kebutuhan Layanan</h2><p>Kelola permintaan konsultasi dan supervisi.</p></div><button class="btn primary" data-open="needModal">Buat Permintaan</button></div>
-          <div class="card">
-            <table>
-              <thead><tr><th>Kebutuhan</th><th>Kategori</th><th>Tanggal</th><th>Status</th><th></th></tr></thead>
-              <tbody id="requestTable"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="panel" id="panel-schedule">
-          <div class="panel-title"><div><h2>Jadwal</h2><p>Jadwal konsultasi dan pertemuan.</p></div><button class="btn secondary" data-open="bookingModal">Tambah Jadwal</button></div>
-          <div class="calendar-card">
-            <div class="calendar-head"><button>‹</button><h3>Juli 2026</h3><button>›</button></div>
-            <div class="calendar-grid" id="calendarGrid"></div>
-          </div>
-        </section>
-
-        <section class="panel" id="panel-consultation">
-          <div class="panel-title"><div><h2>Ruang Konsultasi</h2><p>Interaksi aman antara klien dan profesional.</p></div></div>
-          <div class="chat-layout card">
-            <div class="chat-list">
-              <div class="chat-person active"><div class="avatar">AS</div><div><b>Dr. Aulia Santoso</b><small>Psikolog Klinis</small></div></div>
-              <div class="chat-person"><div class="avatar alt">RM</div><div><b>Raka Mahendra</b><small>Supervisor Adiksi</small></div></div>
-            </div>
-            <div class="chat-room">
-              <div class="chat-head"><div><b>Dr. Aulia Santoso</b><small><span class="online-dot"></span> Online</small></div><button class="btn ghost">Mulai Video</button></div>
-              <div class="messages" id="messages">
-                <div class="message other">Selamat datang di ruang konsultasi Being. Silakan ceritakan hal utama yang ingin dibahas.</div>
-                <div class="message me">Saya ingin mendiskusikan strategi penanganan klien dengan motivasi rendah.</div>
-                <div class="message other">Baik. Kita mulai dari asesmen kesiapan berubah dan pola penolakannya.</div>
-              </div>
-              <form class="chat-input" id="chatForm"><input id="chatInput" placeholder="Tulis pesan..." /><button class="btn primary">Kirim</button></form>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" id="panel-reports">
-          <div class="panel-title"><div><h2>Laporan Hasil</h2><p>Ringkasan masalah, analisis, rekomendasi, dan tindak lanjut.</p></div></div>
-          <div class="report-card card">
-            <div class="pdf-icon">PDF</div>
-            <div><h3>Laporan Konsultasi Klinis</h3><p>Dr. Aulia Santoso • 30 Juli 2026</p><span class="badge green">Tersedia</span></div>
-            <button class="btn secondary" id="downloadReport">Unduh PDF</button>
-          </div>
-        </section>
-
-        <section class="panel" id="panel-payments">
-          <div class="panel-title"><div><h2>Pembayaran</h2><p>Invoice dan riwayat transaksi layanan.</p></div></div>
-          <div class="card">
-            <table><thead><tr><th>Invoice</th><th>Layanan</th><th>Nominal</th><th>Status</th><th></th></tr></thead>
-            <tbody><tr><td>#BNG-2026-0730</td><td>Telekonsultasi 60 menit</td><td>Rp350.000</td><td><span class="badge amber">Menunggu</span></td><td><button class="text-btn" data-open="paymentModal">Bayar</button></td></tr></tbody></table>
-          </div>
-        </section>
-
-        <section class="panel" id="panel-profile">
-          <div class="panel-title"><div><h2>Profil</h2><p>Identitas dan preferensi akun.</p></div></div>
-          <form class="profile-form card" id="profileForm">
-            <label>Nama Lengkap<input value="Tri Tjahyono" /></label>
-            <label>Email<input type="email" value="tri@example.com" /></label>
-            <label>Nomor WhatsApp<input value="0812-0000-0000" /></label>
-            <label>Tanggal Lahir<input type="date" value="1975-01-01" /></label>
-            <label>Jenis Kelamin<select><option>Laki-laki</option><option>Perempuan</option></select></label>
-            <label>Pekerjaan<input value="Profesional" /></label>
-            <label class="full">Riwayat Kesehatan (opsional)<textarea placeholder="Tuliskan bila relevan"></textarea></label>
-            <button class="btn primary">Simpan Perubahan</button>
-          </form>
-        </section>
-
-        <section class="panel" id="panel-admin">
-          <div class="panel-title">
-            <div><h2>Dashboard Admin</h2><p>Kelola pengguna, profesional, layanan, jadwal, dan pembayaran.</p></div>
-            <a class="btn whatsapp" href="https://wa.me/6287877883457" target="_blank" rel="noopener">WhatsApp Admin</a>
-          </div>
-          <div class="stat-grid">
-            <div class="stat"><small>Total Klien</small><strong>128</strong><span>+12 bulan ini</span></div>
-            <div class="stat"><small>Profesional Aktif</small><strong>18</strong><span>3 menunggu verifikasi</span></div>
-            <div class="stat"><small>Booking Aktif</small><strong>24</strong><span>8 hari ini</span></div>
-            <div class="stat"><small>Pembayaran</small><strong>Rp14,8 jt</strong><span>Bulan berjalan</span></div>
-          </div>
-          <div class="dash-grid">
-            <article class="card span2">
-              <div class="card-head"><h3>Permintaan Terbaru</h3><button class="text-btn">Lihat semua</button></div>
-              <table>
-                <thead><tr><th>Klien</th><th>Kebutuhan</th><th>Status</th><th>Aksi</th></tr></thead>
-                <tbody>
-                  <tr><td>Andi Pratama</td><td>Supervisi klinis</td><td><span class="badge amber">Perlu Matching</span></td><td><button class="text-btn">Proses</button></td></tr>
-                  <tr><td>Siti Aisyah</td><td>Konsultasi psikologi</td><td><span class="badge green">Terjadwal</span></td><td><button class="text-btn">Detail</button></td></tr>
-                </tbody>
-              </table>
-            </article>
-            <article class="card">
-              <div class="card-head"><h3>Akses Cepat</h3></div>
-              <div class="admin-actions">
-                <button class="btn secondary full">Verifikasi Profesional</button>
-                <button class="btn secondary full">Kelola Jadwal</button>
-                <button class="btn secondary full">Cek Pembayaran</button>
-                <a class="btn whatsapp full" href="https://wa.me/6287877883457" target="_blank" rel="noopener">Hubungi via WA</a>
-              </div>
-            </article>
-          </div>
-        </section>
-
+    <section class="section" id="professionals">
+      <div class="section-head"><span class="eyebrow">Profesional</span><h2>Rekomendasi berbasis kebutuhan Anda</h2></div>
+      <div class="cards three">
+        <article class="pro-card"><div class="avatar">AP</div><h3>Dr. Arini Pratiwi, M.Psi., Psikolog</h3><p>Clinical Supervisor • Stres kerja • Pengembangan profesional</p><div class="rating">★ 4,9 • 128 ulasan</div><button class="btn btn-outline full" data-open-login>Lihat Profil</button></article>
+        <article class="pro-card"><div class="avatar">RF</div><h3>Rizky Fadhlan, M.Psi., Psikolog</h3><p>Psikolog Klinis • Kecemasan • Regulasi emosi</p><div class="rating">★ 4,8 • 94 ulasan</div><button class="btn btn-outline full" data-open-login>Lihat Profil</button></article>
+        <article class="pro-card"><div class="avatar">NS</div><h3>Nadia Safitri, M.Psi., Psikolog</h3><p>Psikolog Pendidikan • Remaja • Keluarga</p><div class="rating">★ 4,9 • 111 ulasan</div><button class="btn btn-outline full" data-open-login>Lihat Profil</button></article>
       </div>
+    </section>
+
+    <section class="section help-banner" id="help">
+      <div><span class="eyebrow">Pusat bantuan</span><h2>Masih bingung memilih layanan?</h2><p>Admin BEING membantu menjelaskan alur, jadwal, layanan, dan biaya konsultasi.</p><strong>WhatsApp Admin: 0878 7788 3457</strong></div>
+      <a class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener" href="https://wa.me/6287877883457?text=Halo%20Admin%20BEING,%20saya%20ingin%20dibantu%20memilih%20layanan%20konsultasi.">Hubungi Admin</a>
     </section>
   </main>
 
-  <footer>
-    <div class="brand footer-brand"><img src="assets/logo-being-header.png" alt="Logo BEING Biro Psikologi"></div>
-    <p>Konsultasi Psikologi, Clinical Supervision & Konsultasi Profesional</p>
-    <p class="muted">Prototype profesional Being • 2026</p>
-  </footer>
+  <section id="dashboardApp" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="side-brand"><img src="assets/logo-being.png" alt=""><div><b>BEING</b><span>Biro Psikologi</span></div></div>
+      <div class="role-pill" id="rolePill">Dashboard Klien</div>
+      <nav id="sideNav"></nav>
+      <div class="side-help"><small>Butuh bantuan?</small><strong>0878 7788 3457</strong><a target="_blank" href="https://wa.me/6287877883457">Chat WhatsApp</a></div>
+      <button class="logout" id="logoutBtn">Keluar</button>
+    </aside>
+    <section class="workspace">
+      <header class="workspace-head">
+        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <div><h2 id="pageTitle">Dashboard</h2><p id="pageSub">Ringkasan aktivitas Anda hari ini.</p></div>
+        <div class="user-chip"><span>🔔</span><div class="avatar small" id="userInitial">AP</div><div><b id="userName">Andi Pratama</b><small id="userRole">Klien</small></div></div>
+      </header>
+      <div id="pageContent" class="page-content"></div>
+    </section>
+  </section>
 
-  <div class="modal" id="authModal">
-    <div class="modal-card small">
-      <button class="modal-close">×</button>
-      <div class="auth-logo"><img src="assets/logo-being-header.png" alt="BEING Biro Psikologi"></div>
-      <div class="modal-head"><span class="eyebrow">Selamat datang</span><h2>Masuk ke BEING</h2><p>Gunakan email dan kata sandi Anda.</p></div>
-      <form id="loginForm">
-        <label>Email<input type="email" required placeholder="nama@email.com"></label>
-        <label>Kata Sandi<input type="password" required placeholder="••••••••"></label>
-        <div class="form-row"><label class="check"><input type="checkbox"> Ingat saya</label><button type="button" class="text-btn">Lupa kata sandi?</button></div>
-        <button class="btn primary full">Masuk</button>
-        <p class="center muted">Belum punya akun? <button type="button" class="text-btn" id="showRegister">Daftar</button></p>
-      </form>
-    </div>
-  </div>
-
-  <div class="modal" id="needModal">
+  <div class="modal hidden" id="loginModal">
     <div class="modal-card">
-      <button class="modal-close">×</button>
-      <div class="modal-head"><span class="eyebrow">Langkah 1 dari 3</span><h2>Ceritakan kebutuhan Anda</h2><p>Informasi ini membantu sistem menemukan profesional paling sesuai.</p></div>
-      <form id="needForm">
-        <label>Kategori Layanan<select id="needCategory" required></select></label>
-        <label>Judul Kebutuhan<input id="needTitle" required placeholder="Contoh: Bedah kasus klien dengan severe denial"></label>
-        <label>Deskripsi Detail<textarea id="needDescription" required rows="6" placeholder="Tuliskan konteks, kondisi, dan hasil yang diharapkan..."></textarea></label>
-        <label>Dokumen Pendukung (opsional)<input type="file"></label>
-        <label class="check"><input type="checkbox" required> Saya menyetujui penggunaan data untuk proses pencocokan profesional.</label>
-        <button class="btn primary full">Temukan Profesional</button>
-      </form>
+      <button class="modal-close" data-close>×</button>
+      <img class="modal-logo" src="assets/logo-being.png" alt="BEING">
+      <h2>Masuk ke BEING</h2><p>Pilih akses untuk mencoba versi 2.0.</p>
+      <label>Email atau nomor WhatsApp<input value="demo@being.id"></label>
+      <label>Kata sandi<input type="password" value="123456"></label>
+      <label>Masuk sebagai
+        <select id="roleSelect"><option value="client">Klien</option><option value="professional">Profesional</option><option value="admin">Admin</option></select>
+      </label>
+      <button class="btn btn-primary full" id="loginBtn">Masuk ke Dashboard</button>
+      <small class="demo-note">Mode uji GitHub: data masih berupa simulasi dan belum tersambung ke Supabase.</small>
     </div>
   </div>
 
-  <div class="modal" id="bookingModal">
-    <div class="modal-card">
-      <button class="modal-close">×</button>
-      <div class="modal-head"><span class="eyebrow">Penjadwalan</span><h2>Pilih model layanan</h2></div>
-      <form id="bookingForm">
-        <div class="model-grid">
-          <label class="model-option"><input type="radio" name="model" value="Teks" checked><span>💬</span><b>Teks</b><small>Chat berbasis pesan</small></label>
-          <label class="model-option"><input type="radio" name="model" value="Telekonsultasi"><span>🎥</span><b>Telekonsultasi</b><small>Voice atau video call</small></label>
-          <label class="model-option"><input type="radio" name="model" value="Tatap Muka"><span>🤝</span><b>Tatap Muka</b><small>Pertemuan langsung</small></label>
-        </div>
-        <div class="two-col"><label>Tanggal<input type="date" required value="2026-07-30"></label><label>Jam<select><option>09.00 WIB</option><option>13.00 WIB</option><option selected>19.30 WIB</option></select></label></div>
-        <div class="price-box"><span>Biaya layanan</span><strong>Rp350.000</strong></div>
-        <button class="btn primary full">Konfirmasi Jadwal</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="modal" id="paymentModal">
-    <div class="modal-card small">
-      <button class="modal-close">×</button>
-      <div class="modal-head"><span class="eyebrow">Pembayaran aman</span><h2>Pilih metode pembayaran</h2></div>
-      <form id="paymentForm">
-        <label class="payment-option"><input type="radio" name="payment" checked><span>Transfer Bank / Virtual Account</span></label>
-        <label class="payment-option"><input type="radio" name="payment"><span>QRIS</span></label>
-        <label class="payment-option"><input type="radio" name="payment"><span>Kartu Kredit / Debit</span></label>
-        <div class="price-box"><span>Total pembayaran</span><strong>Rp350.000</strong></div>
-        <button class="btn primary full">Lanjutkan Pembayaran</button>
-      </form>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
-</body>
-</html>
+  <a class="floating-wa" target="_blank" rel="noopener" href="https://wa.me/6287877883457?text=Halo%20Admin%20BEING.">WA</a>
+  <script src="assets/app.js"></script>
+</body></html>

@@ -1,0 +1,55 @@
+
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const state={role:'client',page:'dashboard'};
+const menus={
+ client:[['dashboard','Dashboard'],['services','Layanan Saya'],['matching','Cari Profesional'],['schedule','Jadwal'],['consultation','Konsultasi'],['payments','Pembayaran'],['reports','Laporan'],['documents','Dokumen Saya'],['notifications','Notifikasi'],['help','Bantuan'],['profile','Profil']],
+ professional:[['dashboard','Dashboard'],['schedule','Jadwal Saya'],['requests','Permintaan Baru'],['consultation','Konsultasi'],['clients','Klien'],['reports','Laporan'],['income','Pendapatan'],['reviews','Ulasan'],['help','Bantuan'],['profile','Pengaturan']],
+ admin:[['dashboard','Dashboard'],['users','Kelola Klien'],['professionals','Kelola Profesional'],['matching','Matching'],['schedule','Jadwal'],['payments','Pembayaran'],['reports','Laporan'],['articles','Artikel'],['broadcast','Broadcast WA'],['help','Bantuan'],['settings','Pengaturan']]
+};
+const labels={client:['Andi Pratama','Klien','AP'],professional:['Dr. Arini Pratiwi','Profesional','AR'],admin:['Admin BEING','Administrator','AB']};
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}
+function openLogin(){$('#loginModal').classList.remove('hidden')} function closeLogin(){$('#loginModal').classList.add('hidden')}
+$$('[data-open-login]').forEach(x=>x.onclick=openLogin);$$('[data-close]').forEach(x=>x.onclick=closeLogin);
+$('#loginModal').onclick=e=>{if(e.target.id==='loginModal')closeLogin()};
+$('#loginBtn').onclick=()=>{state.role=$('#roleSelect').value;state.page='dashboard';closeLogin();$('#publicApp').classList.add('hidden');$('.topbar').classList.add('hidden');$('#dashboardApp').classList.remove('hidden');renderShell();toast('Berhasil masuk ke mode '+labels[state.role][1])};
+$('#logoutBtn').onclick=()=>{$('#dashboardApp').classList.add('hidden');$('#publicApp').classList.remove('hidden');$('.topbar').classList.remove('hidden');location.hash='home'};
+$('#mobileMenu').onclick=()=>$('.sidebar').classList.toggle('open');
+
+function renderShell(){
+ const u=labels[state.role];$('#rolePill').textContent='Dashboard '+u[1];$('#userName').textContent=u[0];$('#userRole').textContent=u[1];$('#userInitial').textContent=u[2];
+ $('#sideNav').innerHTML=menus[state.role].map(([id,l])=>`<button class="nav-item ${id===state.page?'active':''}" data-page="${id}">${icon(id)} ${l}</button>`).join('');
+ $$('.nav-item').forEach(b=>b.onclick=()=>{state.page=b.dataset.page;renderShell();$('.sidebar').classList.remove('open')});
+ renderPage();
+}
+function icon(id){return ({dashboard:'⌂',services:'◫',matching:'◎',schedule:'◷',consultation:'◌',payments:'Rp',reports:'▤',documents:'▱',notifications:'♢',help:'?',profile:'♙',requests:'+',clients:'♧',income:'↗',reviews:'★',users:'♧',professionals:'♙',articles:'✎',broadcast:'◉',settings:'⚙'}[id]||'•')+' '}
+function renderPage(){
+ const c=$('#pageContent'), title=menus[state.role].find(x=>x[0]===state.page)?.[1]||'Dashboard';$('#pageTitle').textContent=title;$('#pageSub').textContent=subtitle(state.page);
+ if(state.page==='dashboard') return c.innerHTML=dashboard();
+ if(state.page==='help') return c.innerHTML=help();
+ if(state.page==='matching') return c.innerHTML=matching();
+ if(state.page==='schedule') return c.innerHTML=schedule();
+ if(state.page==='consultation') return c.innerHTML=consultation();
+ if(state.page==='payments') return c.innerHTML=payments();
+ if(state.page==='reports') return c.innerHTML=reports();
+ c.innerHTML=generic(title);
+ bindActions();
+}
+function subtitle(p){return ({dashboard:'Ringkasan aktivitas dan layanan terbaru.',help:'Pusat bantuan dan kontak Admin BEING.',matching:'Temukan profesional yang sesuai dengan kebutuhan.',schedule:'Atur dan pantau jadwal layanan.',consultation:'Masuk ke ruang konsultasi Anda.',payments:'Pantau transaksi dan status pembayaran.',reports:'Akses laporan profesional Anda.'}[p]||'Kelola data dan aktivitas pada menu ini.')}
+function dashboard(){
+ if(state.role==='admin')return `<div class="stats">${stat('Total Klien','128','+12 bulan ini')}${stat('Profesional Aktif','18','3 menunggu verifikasi')}${stat('Booking Aktif','24','8 hari ini')}${stat('Pembayaran','Rp14,8 jt','Bulan berjalan')}</div><div class="dashboard-grid"><section class="panel"><h3>Permintaan terbaru</h3>${list('Andi Pratama','Clinical supervision','Perlu Matching')}${list('Siti Aisyah','Konsultasi psikologi','Terjadwal')}${list('Budi Santoso','Coaching','Menunggu')}</section><section class="panel"><h3>Akses cepat</h3><div class="list"><button class="btn btn-outline full">Verifikasi Profesional</button><button class="btn btn-outline full">Kelola Jadwal</button><button class="btn btn-outline full">Cek Pembayaran</button><a class="btn btn-whatsapp full" target="_blank" href="https://wa.me/6287877883457">WhatsApp Admin</a></div></section></div>`;
+ if(state.role==='professional')return `<div class="stats">${stat('Konsultasi Hari Ini','2','Sesi terjadwal')}${stat('Permintaan Baru','5','Perlu ditinjau')}${stat('Laporan','3','Belum selesai')}${stat('Pendapatan','Rp6,2 jt','Bulan berjalan')}</div><div class="dashboard-grid"><section class="panel"><h3>Jadwal hari ini</h3>${list('10.00 WIB • Andi Pratama','Telekonsultasi','Berlangsung')}${list('16.00 WIB • Siti Aisyah','Teks (Chat)','Menunggu')}${list('19.00 WIB • Budi Santoso','Tatap Muka','Akan Datang')}</section><section class="panel"><h3>Tugas profesional</h3>${list('Laporan Andi','Batas hari ini','Tulis Laporan')}${list('Verifikasi catatan','2 konsultasi','Tinjau')}</section></div>`;
+ return `<div class="stats">${stat('Konsultasi Aktif','2','Sedang berlangsung')}${stat('Jadwal Mendatang','1','Dalam 24 jam')}${stat('Laporan Tersedia','1','Siap diunduh')}${stat('Total Konsultasi','5','Sejak bergabung')}</div><div class="dashboard-grid"><section class="panel"><h3>Konsultasi terbaru</h3>${list('Dr. Arini Pratiwi','Telekonsultasi • Hari ini 10.00','Masuk Ruang')}${list('Rizky Fadhlan','Teks (Chat) • Selesai','Lihat Laporan')}<h3 style="margin-top:25px">Pilih layanan baru</h3><div class="action-grid">${action('💬','Teks (Chat)')}${action('🎥','Telekonsultasi')}${action('🤝','Tatap Muka')}</div></section><section class="panel"><h3>Jadwal mendatang</h3>${list('Dr. Arini Pratiwi','Besok • 16.00 WIB','Detail')}<h3 style="margin-top:25px">Aktivitas terbaru</h3><div class="list"><small>Laporan konsultasi telah tersedia</small><small>Pembayaran INV-0004 berhasil</small><small>Konsultasi telah selesai</small></div></section></div>`;
+}
+function stat(a,b,c){return `<div class="stat-card"><small>${a}</small><strong>${b}</strong><span>${c}</span></div>`}
+function list(a,b,c){return `<div class="list-item"><div><b>${a}</b><p>${b}</p></div><span class="badge">${c}</span></div>`}
+function action(i,t){return `<button class="action-card" data-demo><span>${i}</span><b>${t}</b><small>Pilih layanan</small></button>`}
+function matching(){return `<section class="panel"><h3>Isi kebutuhan layanan</h3><div class="action-grid">${action('🧠','Kecemasan & stres')}${action('💼','Stres kerja')}${action('🎓','Clinical supervision')}</div><br><button class="btn btn-primary" data-demo>Proses Matching</button></section><br><div class="cards three"><article class="pro-card"><div class="avatar">AP</div><h3>Dr. Arini Pratiwi</h3><p>Clinical Supervisor</p><b>96% sesuai</b></article><article class="pro-card"><div class="avatar">RF</div><h3>Rizky Fadhlan</h3><p>Psikolog Klinis</p><b>91% sesuai</b></article><article class="pro-card"><div class="avatar">NS</div><h3>Nadia Safitri</h3><p>Psikolog Pendidikan</p><b>89% sesuai</b></article></div>`}
+function schedule(){return `<section class="panel"><h3>Jadwal konsultasi</h3><div class="table-wrap"><table><thead><tr><th>Tanggal</th><th>Waktu</th><th>Profesional/Klien</th><th>Model</th><th>Status</th></tr></thead><tbody><tr><td>30 Juli 2026</td><td>10.00 WIB</td><td>Dr. Arini Pratiwi</td><td>Telekonsultasi</td><td><span class="badge">Terjadwal</span></td></tr><tr><td>31 Juli 2026</td><td>16.00 WIB</td><td>Rizky Fadhlan</td><td>Teks (Chat)</td><td><span class="badge">Menunggu</span></td></tr></tbody></table></div></section>`}
+function consultation(){return `<section class="panel"><h3>Ruang Konsultasi</h3><div class="list"><div class="list-item"><div><b>Dr. Arini Pratiwi</b><p>Telekonsultasi • Hari ini 10.00 WIB</p></div><button class="btn btn-primary" data-demo>Masuk Ruang</button></div><div class="list-item"><div><b>Rizky Fadhlan</b><p>Teks (Chat) • Aktif</p></div><button class="btn btn-outline" data-demo>Buka Chat</button></div></div></section>`}
+function payments(){return `<section class="panel"><h3>Riwayat pembayaran</h3><div class="table-wrap"><table><thead><tr><th>Invoice</th><th>Layanan</th><th>Nilai</th><th>Status</th></tr></thead><tbody><tr><td>INV-202607-0004</td><td>Telekonsultasi</td><td>Rp350.000</td><td><span class="badge">Berhasil</span></td></tr><tr><td>INV-202607-0005</td><td>Clinical Supervision</td><td>Rp500.000</td><td><span class="badge">Menunggu</span></td></tr></tbody></table></div></section>`}
+function reports(){return `<section class="panel"><h3>Laporan profesional</h3>${list('Laporan Konsultasi 20 Juli 2026','Dr. Arini Pratiwi • PDF','Unduh')}${list('Ringkasan Tindak Lanjut','Rizky Fadhlan • PDF','Unduh')}</section>`}
+function help(){return `<div class="help-page"><section class="panel faq"><h3>Pertanyaan umum</h3><details open><summary>Bagaimana memilih profesional?</summary><p>Isi kebutuhan layanan, lalu sistem menampilkan beberapa rekomendasi berdasarkan kompetensi, pengalaman, rating, dan sertifikasi.</p></details><details><summary>Apakah konsultasi bersifat rahasia?</summary><p>BEING dirancang dengan prinsip kerahasiaan data dan percakapan klien.</p></details><details><summary>Bagaimana menerima laporan?</summary><p>Laporan profesional tersedia di dashboard dan dapat diunduh dalam format PDF setelah proses layanan selesai.</p></details></section><aside class="panel"><h3>Hubungi Admin</h3><p>Admin membantu alur pendaftaran, pemilihan layanan, jadwal, pembayaran, dan kendala teknis.</p><h2>0878 7788 3457</h2><a class="btn btn-whatsapp full" target="_blank" href="https://wa.me/6287877883457?text=Halo%20Admin%20BEING,%20saya%20membutuhkan%20bantuan.">Chat WhatsApp</a><br><br><button class="btn btn-outline full" data-demo>Buat Tiket Bantuan</button></aside></div>`}
+function generic(t){return `<section class="panel"><h3>${t}</h3><p>Halaman ini sudah disiapkan dalam struktur BEING 2.0. Fungsi database dan penyimpanan akan diaktifkan pada tahap integrasi Supabase.</p><button class="btn btn-primary" data-demo>Tambah Data</button></section>`}
+function bindActions(){$$('[data-demo]').forEach(b=>b.onclick=()=>toast('Fitur simulasi aktif. Integrasi Supabase pada tahap berikutnya.'))}
+document.addEventListener('click',e=>{if(e.target.closest('[data-demo]'))toast('Fitur simulasi aktif. Integrasi Supabase pada tahap berikutnya.')});
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
